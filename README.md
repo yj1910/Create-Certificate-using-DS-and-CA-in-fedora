@@ -8,7 +8,9 @@ In this repo, All about install a Directory Server (DS) and Certificate Authorit
 [Fedora](https://getfedora.org/en/workstation/download/) 
 - Configure the setting to install fedora ISO in virtual box and allocate the CPUs, Memories to Fedora vm. 
 #### Note - To run Fedora minimum required 2gb RAM and 20gb Disk space.
--
+
+## Installing PKI and DS(Directory server) packages.
+   Refer from 
 
 
 
