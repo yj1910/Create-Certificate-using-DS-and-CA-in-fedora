@@ -1,0 +1,15 @@
+You need to install a Directory Server (DS) and Certificate Authority (CA) server on a Fedora VM and write a script in python to do further testing.
+
+https://github.com/dogtagpki/pki/wiki/Quick-Start
+
+ 
+
+1. Setup your VM with DS and Dogtag PKI packages.
+
+2. Setup a LDAP server (Creating DS Instance)
+
+3. Setup a CA server (Creating PKI Subsystems)
+
+4. Create a certificate request using : client-cert-request  and sign the certificate using : ca-cert-request-review (Refer : Request: https://github.com/dogtagpki/pki/wiki/PKI-Client-CLI , Approve : https://github.com/dogtagpki/pki/wiki/Handling-Certificate-Request : Basic Request and Approving the Request) 
+
+5. Try to write step 4 in a Python script.
