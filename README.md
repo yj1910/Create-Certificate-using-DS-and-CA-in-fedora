@@ -62,7 +62,48 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
    - instance_name shows the name of the DS instance. For this our intance_name is "hello".
    - root_password specifies the password for DS admin (i.e. cn=Directory Manager). Here root_passowrd is "Yashjain@123".
    - suffix specifies the namespace for the DS instance. In this example it’s set to dc=example,dc=com.
-   - self_sign_cert create self-signed certificates for SSL connection. I am enabling the ssl connection to to set to be "True". For in future during sending certificate request sslexception error is not coming.
+   - self_sign_cert create self-signed certificates for SSL connection. I am enabling the ssl connection to to set to be "True".Precaution for in future during sending certificate request sslexception error is not coming.
+   
+ - At last, create file for ds intance
+   ````bash
+   $ dscreate from-file ds.inf
+   ````
+ - Creating pki subtree
+   The DS instance is empty. So, Use an LDAP client to add a root entry and PKI base entry. By following command
+      ````bash
+    $ ldapadd -H ldap://$HOSTNAME -x -D "cn=Directory Manager" -w Secret.123 << EOF
+      dn: dc=pki,dc=example,dc=com
+      objectClass: domain
+      dc: pki
+      EOF
+      ````
+      *console output-*
+      ````bash
+      dc=example,dc=com
+      ````
+  - At last for check the status of ds intance that your ds intance running or not. You can check  by following command.
+      ````bash
+      $ dsctl localhost status
+      ````
+      *console output-*
+      ````bash
+      Ds intance *localhost* is running
+      ````
+      **Note- If after all setup the ds instance is not running just simply restart it**
+            ````bash
+            $ dsctl localhost status
+            ````
+      
+  
+  #### Process to deploy DS container for pki
+  
+  -First create a network for the container. Our network name example. we can write our person network name instead for 
+  ````bash
+  $ podman network create example
+  ````
+  
+
+
      
      
      
