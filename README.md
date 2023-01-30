@@ -232,7 +232,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
       PKI instances will be enabled upon system boot
    ````
 
-### 4. Creating Certificate request and approval:
+### 5. Creating Certificate request and approval:
 
 - For creating a certificate request for pki cli. A new client database can be initialized with the following command:
    ````bash
