@@ -106,7 +106,7 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
   ````
   - Deploy the container with following command
   ````bash
-  $ podman run \
+   $ podman run \
     --name=ds \
     --hostname=ds.example.com \
     --network=example \
@@ -117,13 +117,123 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
     -p 3636:3636 \
     -d \
     quay.io/389ds/dirsrv
-    ````
-  - After deploying the container files. check the container is deploying successfully by fetching logs by command
+   ````
+   - After deploying the container files. check the container is deploying successfully by fetching logs by command
     ````bash
     $ podman logs -f ds
     ````
-  If conatiner is not running. start conatiner. ````bash podman start container_name ````
+     If conatiner is not running. start conatiner. ````bash podman start container_name ````
+   - Creating DS Backend:
+      ````bash
+   $ podman exec ds dsconf hello backend create \
+    --suffix dc=example,dc=com \
+    --be-name userRoot
+      ````
+   - Creating PKI Subtree:
+      ````bash
+       $ podman exec -i ds ldapadd \
+       -H ldap://ds.example.com:3389 \
+      -D "cn=Directory Manager" \
+      -w Secret.123 \
+      -x << EOF
+      dn: dc=example,dc=com
+      objectClass: domain
+      dc: example
+
+      dn: dc=pki,dc=example,dc=com
+      objectClass: domain
+      dc: pki
+      EOF
+      ````
+     - Accessing PKI Subtree:
+     ````bash
+      $ podman exec ds ldapsearch \
+      -H ldap://ds.example.com:3389 \
+      -D "cn=Directory Manager" \
+      -w Secret.123 \
+      -x \
+      -b "dc=example,dc=com"
+     ````
     
+### 4. Creating PKI Subsystems or CA server:
+      - to creating PKI subsytems. Run the command and configure as per according and requirments.
+      
+      `````bash
+      $ pkispawn
+      ````
+      *console output and configuration-*
+   ````bash               
+      IMPORTANT:
+
+    Interactive installation currently only exists for very basic deployments!
+
+    For example, deployments intent upon using advanced features such as:
+
+        * Cloning,
+        * Elliptic Curve Cryptography (ECC),
+        * External CA,
+        * Hardware Security Module (HSM),
+        * Subordinate CA,
+        * etc.,
+
+    must provide the necessary override parameters in a separate
+    configuration file.
+
+    Run 'man pkispawn' for details.
+
+Subsystem (CA/KRA/OCSP/TKS/TPS) [CA]:
+
+Tomcat:
+  Instance [pki-tomcat]:
+  HTTP port [8080]:
+  Secure HTTP port [8443]:
+  AJP port [8009]:
+  Management port [8005]:
+
+Administrator:
+  Username [yjain7573]:
+  Password: Yashjain@123
+  Verify password: Yash jain@123
+  Import certificate (Yes/No) [N]?
+  Export certificate to [/root/.dogtag/pki-tomcat/ca_admin.cert]:
+
+Directory Server:
+  Hostname [pki.example.com]:
+  Use a secure LDAPS connection (Yes/No/Quit) [N]? Yes
+  LDAP Port [389]:
+  Bind DN [cn=Directory Manager]:
+  Password: Yashjain@123
+  Base DN [o=pki-tomcat-CA]:
+
+Security Domain:
+  Name [example.com Security Domain]:
+
+Begin installation (Yes/No/Quit)? Yes
+
+Installing CA into /var/lib/pki/pki-tomcat.
+
+    ==========================================================================
+                                INSTALLATION SUMMARY
+    ==========================================================================
+
+      Administrator's username:             hello
+      Administrator's PKCS #12 file:
+            /root/.dogtag/pki-tomcat/ca_admin_cert.p12
+
+      To check the status of the subsystem:
+            systemctl status pki-tomcatd@pki-tomcat.service
+
+      To restart the subsystem:
+            systemctl restart pki-tomcatd@pki-tomcat.service
+
+      The URL for the subsystem is:
+            https://pki.example.com:8443/ca
+
+      PKI instances will be enabled upon system boot
+   ````
+
+     
+     
   
 
 
