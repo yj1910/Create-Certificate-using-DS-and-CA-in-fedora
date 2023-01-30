@@ -27,8 +27,46 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
 ### 2. Installing PKI and DS(Directory server) packages.
    Refer from [Dogtag pki](https://github.com/dogtagpki/pki/wiki/Quick-Start)
    
-   - To install Dogtag PKI package
-    ''''bash
-    $ dnf install -y dogtag-pki
-    ''''
+   - First you have to be root user. To root access for machine. Enter following command and after that you have to enter root password
+      ````bash
+      $ sudo -s
+      [sudo] password for root:
+      ````
+   - To install Dogtag PKI package. use following command
+      ````bash
+      $ dnf install dogtag-pki
+      ````
+   - To install Directory server(DS) package:
+      ````bash
+      $ dnf install -y 389-ds-base
+      ````
+      
+ ### 3. Creating DS intance or LDAP server:
+         
+ - Generate a DS configuration file-
+     
+       ````bash
+      $ dscreate create-template ds.inf
+       ````
+  - Customize the DS configuration file-
+     ````bash
+     $ sed -i \
+    -e "s/;instance_name = .*/instance_name = hello/g" \
+    -e "s/;root_password = .*/root_password = Yashjain@123/g" \
+    -e "s/;suffix = .*/suffix = dc=example,dc=com/g" \
+    -e "s/;create_suffix_entry = .*/create_suffix_entry = True/g" \
+    -e "s/;self_sign_cert = .*/self_sign_cert = True/g" \
+    ds.inf
+    ````
+  where,
+   - instance_name shows the name of the DS instance. For this our intance_name is "hello".
+   - root_password specifies the password for DS admin (i.e. cn=Directory Manager). Here root_passowrd is "Yashjain@123".
+   - suffix specifies the namespace for the DS instance. In this example it’s set to dc=example,dc=com.
+   - self_sign_cert create self-signed certificates for SSL connection. I am enabling the ssl connection to to set to be "True". For in future during sending certificate request sslexception error is not coming.
+     
+     
+     
+      
+
+      
 
