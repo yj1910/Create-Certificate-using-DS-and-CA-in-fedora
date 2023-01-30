@@ -232,6 +232,9 @@ Installing CA into /var/lib/pki/pki-tomcat.
       PKI instances will be enabled upon system boot
    ````
 
+### 4. Creating Certificate request and approval:
+
+- For creating a certificate request 
      
      
   
