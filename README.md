@@ -1,5 +1,20 @@
 # Assingment Readme
-In this repo, All about install a Directory Server (DS) and Certificate Authority (CA) server on a Fedora VM. Create a certificate request and automate python script. For more information check the problem-statement first.
+
+## Problem
+
+1. Setup your VM with DS and Dogtag PKI packages.
+
+2. Setup a LDAP server (Creating DS Instance)
+
+3. Setup a CA server (Creating PKI Subsystems)
+
+4. Create a certificate request using : client-cert-request  and sign the certificate using : ca-cert-request-review (Refer : Request: https://github.com/dogtagpki/pki/wiki/PKI-Client-CLI , Approve : https://github.com/dogtagpki/pki/wiki/Handling-Certificate-Request : Basic Request and Approving the Request) 
+
+5. Try to write step 4 in a Python script.
+
+## Overview in readme
+
+In this repo, In this we create Directory Server (DS) and Certificate Authority (CA) server on a Fedora VM and setup a LDAP server and CA server subsystem. Create a certificate request and automate python script. For more about assignment check [here](https://github.com/yj1910/Create-a-DS-and-CA-servers-in-fedora-vm-and-certificate-request-and-approval-/blob/main/Assignment)
 
 ## Setup Fedora VM in your windows machine.
 
