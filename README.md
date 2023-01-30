@@ -71,7 +71,7 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
  - Creating pki subtree
    The DS instance is empty. So, Use an LDAP client to add a root entry and PKI base entry. By following command
       ````bash
-    $ ldapadd -H ldap://$HOSTNAME -x -D "cn=Directory Manager" -w Secret.123 << EOF
+    $ ldapadd -H ldap://$HOSTNAME -x -D "cn=Directory Manager" -w Yashjain@123 << EOF
       dn: dc=pki,dc=example,dc=com
       objectClass: domain
       dc: pki
@@ -83,24 +83,47 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
       ````
   - At last for check the status of ds intance that your ds intance running or not. You can check  by following command.
       ````bash
-      $ dsctl localhost status
+      $ dsctl hello status
       ````
       *console output-*
       ````bash
-      Ds intance *localhost* is running
+      Ds intance *hello* is running
       ````
       **Note- If after all setup the ds instance is not running just simply restart it**
             ````bash
-            $ dsctl localhost status
+            $ dsctl hello restart
             ````
       
-  
   #### Process to deploy DS container for pki
   
-  -First create a network for the container. Our network name example. we can write our person network name instead for 
+  - First create a network for the container. Our network name example. we can write our person network name instead for 
+   ````bash
+   $ podman network create example
+   ````
+  - Create DS volume
   ````bash
-  $ podman network create example
+  $ podman volume create ds-data
   ````
+  - Deploy the container with following command
+  ````bash
+  $ podman run \
+    --name=ds \
+    --hostname=ds.example.com \
+    --network=example \
+    --network-alias=ds.example.com \
+    -v ds-data:/data \
+    -e DS_DM_PASSWORD=Yashjain@123 \
+    -p 3389:3389 \
+    -p 3636:3636 \
+    -d \
+    quay.io/389ds/dirsrv
+    ````
+  - After deploying the container files. check the container is deploying successfully by fetching logs by command
+    ````bash
+    $ podman logs -f ds
+    ````
+  If conatiner is not running. start conatiner. ````bash podman start container_name ````
+    
   
 
 
