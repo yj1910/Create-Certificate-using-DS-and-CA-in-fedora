@@ -301,10 +301,10 @@ Installing CA into /var/lib/pki/pki-tomcat.
    ````
  
   
-## 5. Write script to automate Create a certificate request using : client-cert-request  and sign the certificate using : ca-cert-request-review -
-   I create a simple script to create and approve certificate using subprocccess. To manipulate or the script accordingly - [script]( 
+## 6. Write script to automate Create a certificate request using : client-cert-request  and sign the certificate using : ca-cert-request-review -
+   I create a python script to create and approve certificate using subprocccess module in python. To manipulate or the script accordingly.  - [script]( 
 
-
+All the files should in same directory 
 
 
      
