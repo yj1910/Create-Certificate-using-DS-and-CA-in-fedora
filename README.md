@@ -241,6 +241,17 @@ Installing CA into /var/lib/pki/pki-tomcat.
 - The certificates in the client security database can be listed using the following command:
   ````bash
   $ pki -c Secret.123 client-cert-find
+   
+   ----------------------
+   1 certificate(s) found  
+   ----------------------
+  Serial Number: 0x1
+  Nickname: CA Signing
+  Subject DN: CN=CA Signing Certificate,OU=pki-tomcat,0=fedora.local
+  Issuer DN: CN=CA Signing Certificate,OU=pki-tomcat,O=fedora.local security domain
+     ----------------------------
+   Number of entries returned 2
+   ----------------------------
   ````
   
  - Generate a PKCS #10 client certificate request first.
@@ -257,10 +268,10 @@ Installing CA into /var/lib/pki/pki-tomcat.
     -o testuser.csr \
     -n "uid=testuser,ou=people,dc=example,dc=com"
     
-    where, the certificate stored in ````bash testuser.csr````
-           minimun rsa key size ````bash 2048````
+    where, the csr is stored in testuser.csr
+           minimun rsa key size 2048
            files stored in /.dogtag/nssdb
-           Password is ````bash Yashjain@123````
+           Password is  Yashjain@123
     ````
     *console output-*
     ````bash
