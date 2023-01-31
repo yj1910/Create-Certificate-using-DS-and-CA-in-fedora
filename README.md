@@ -231,7 +231,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
 
       PKI instances will be enabled upon system boot
    ````
-
+   After installing CA I created ca self signing certicate by refering [Ca_certificate_system](https://github.com/dogtagpki/pki/blob/master/docs/installation/ca/Installing_CA.md)
 ### 5. Creating Certificate request and approval:
 
 - For creating a certificate request for pki cli. A new client database can be initialized with the following command:
@@ -250,15 +250,22 @@ Installing CA into /var/lib/pki/pki-tomcat.
   Subject DN: CN=CA Signing Certificate,OU=pki-tomcat,0=fedora.local
   Issuer DN: CN=CA Signing Certificate,OU=pki-tomcat,O=fedora.local security domain
      ----------------------------
-   Number of entries returned 2
+   Number of entries returned 1
    ----------------------------
   ````
   
  - Generate a PKCS #10 client certificate request first.
    ````bash
    $ pki -c Secret.123 client-cert-request uid=testuser
+     -----------------------------
+   Submitted certificate request
+   -----------------------------
+   Request ID: 0×c
+   Type: enrollment
+    Request Status: pending
+    Operation Result: success
    ````
-   Alternativly, if above command give "sslsocketexception error". Try another one
+   Alternativly, Try another one for generating request for pkcsclient#10
    ````bash
    $ PKCS10Client \
     -d ~/.dogtag/nssdb \
@@ -280,10 +287,11 @@ Installing CA into /var/lib/pki/pki-tomcat.
     ````
    ** Note: To check the both testuser.csr and keyid file iuse less command**
 - To review the certificate request:
+   (note: review part is not able to tested properly because getting sslexception error. Trying to resolve the error but not able to resolve due to lack of time)
    ````bash
-   $ pki <agent authentication> ca-cert-request-review <request ID> --file <filename>
+   $ pki Yashjain@123 ca-cert-request-review 0×c --file testuser.csr
    or
-   $ pki <agent authentication> ca-cert-request-review <request ID> --action <action>
+   $ pki Yashjain@123 ca-cert-request-review 0×c --action approve
    ````
 -  To approve the certificate request
    ````bash
