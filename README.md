@@ -245,43 +245,29 @@ Installing CA into /var/lib/pki/pki-tomcat.
   
  - Generate a PKCS #10 client certificate request first.
    ````bash
+   $ pki -c Secret.123 client-cert-request uid=testuser
+   ````
+   Alternativly, if above command give "sslsocketexception error". Try another one
+   ````bash
    $ PKCS10Client \
     -d ~/.dogtag/nssdb \
     -p Yashjain@123 \
     -a rsa \
-    -l 1024 \
+    -l 2048 \
     -o testuser.csr \
     -n "uid=testuser,ou=people,dc=example,dc=com"
+    
+    where, the certificate stored in ````bash testuser.csr````
+           minimun rsa key size ````bash 2048````
+           files stored in /.dogtag/nssdb
+           Password is ````bash Yashjain@123````
     ````
     *console output-*
     ````bash
-    PKCS10Client: Debug: got token.
-    PKCS10Client: Debug: thread token set.
-    PKCS10Client: token Internal Key Storage Token logged in...
-   PKCS10Client: key pair generated.
-   PKCS10Client: pair.getPublic() called.
-   PKCS10Client: CertificationRequestInfo() created.
-   PKCS10Client: CertificationRequest created.
-   PKCS10Client: calling Utils.b64encode.
-   PKCS10Client: b64encode completes.
-   -----BEGIN NEW CERTIFICATE REQUEST-----
-   MIIBfTCB5wIBADAaMRgwFgYKCZImiZPyLGQBARMIdGVzdHVzZXIwgZ8wDQYJKoZI
-   hvcNAQEBBQADgY0AMIGJAoGBAPEcxFJBu2lNmIS+MNaZKO43h0dIhKZWZ8wEomQc
-   tc9guIUGM5eFU+psj6n0XQCPMIVRe7mrzYHF8mlwAp416P5/97g9U6JOKkTXc5ia
-   HVE1JRhykHiQ17Lp7Y6xXxfe6xKAXDoLOPJ4fNdadtbVeIGjudWktjgwh5CQBXsA
-   GFP5AgMBAAGgJDAiBggrBgEFBQcHFzEWBBTmaclfLv+kkK5z5kTMP54dlnecUDAN
-   BgkqhkiG9w0BAQQFAAOBgQAXrm979HwcG63Z64u+aybYrfOgyWxQ4kTtCA+NKYge
-   HC6Z/mlb10J/wggOzrHUbE4IFyjbBo2k1FKe8zYcXIB6Ok5Z0TXueR1zKcb8hE35
-   o9dkH2sGJsSqMLN8NRyY5QeqOKmtaX8pm1aPhJ0wkvOYou52YqJdq6LF9KXmBGOH
-   hA==
-   -----END NEW CERTIFICATE REQUEST-----
-      PKCS10Client: done. Request written to file: testuser.csr
-   ````
-    
-- To generate and submit a PKCS #10 request:
-   ````bash
-   $ pki -c Secret.123 client-cert-request uid=testuser
-   ````
+      PKCS10Client: Certificate Client Request written to file: testuser.csr
+      PKCS10Client: PKCB#10 request keyID written into testuser.csr.keyID
+    ````
+   ** Note: To check the both testuser.csr and keyid file iuse less command**
 - To review the certificate request:
    ````bash
    $ pki <agent authentication> ca-cert-request-review <request ID> --file <filename>
@@ -294,10 +280,9 @@ Installing CA into /var/lib/pki/pki-tomcat.
    ````
  
   
-https://github.com/dogtagpki/pki/blob/master/docs/installation/ca/Installing_CA.md
-https://github.com/dogtagpki/pki/wiki/PKI-Client-CLI
-https://github.com/dogtagpki/pki/wiki/Generating-Certificate-Request-with-PKCS10Client
-https://github.com/dogtagpki/pki/wiki/PKI-NSS-Certificate-CLI
+
+
+
 
      
      
