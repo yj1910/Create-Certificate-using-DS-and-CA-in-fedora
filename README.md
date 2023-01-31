@@ -232,7 +232,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
 
       PKI instances will be enabled upon system boot
    ````
-   After installing CA I created ca self signing certicate by refering [Ca_certificate_system](https://github.com/dogtagpki/pki/blob/master/docs/installation/ca/Installing_CA.md)
+   After installing CA I created ca self signing certicate by reffering [Ca_certificate_system](https://github.com/dogtagpki/pki/blob/master/docs/installation/ca/Installing_CA.md)
 ## 5. Create a certificate request using : client-cert-request  and sign the certificate using : ca-cert-request-review :
 
 - For creating a certificate request for pki cli. A new client database can be initialized with the following command:
@@ -249,7 +249,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
   Serial Number: 0x1
   Nickname: CA Signing
   Subject DN: CN=CA Signing Certificate,OU=pki-tomcat,0=fedora.local security domain
-  Issuer DN: CN=CA Signing Certificate,OU=pki-tomcat,O=fedora.local security domain
+  Issuer DN: CN=CA Signing Certificate,OU=pki-tomcat,0=fedora.local security domain
      ----------------------------
    Number of entries returned 1
    ----------------------------
@@ -272,7 +272,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
     -d ~/.dogtag/nssdb \
     -p Yashjain@123 \
     -a rsa \
-    -l 2048 \
+    -l 2048 \             
     -o testuser.csr \
     -n "uid=testuser,ou=people,dc=example,dc=com"
     
@@ -289,7 +289,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
    ** Note: To check the both testuser.csr and keyid file iuse less command**
    
 - To review the certificate request:
-   **(note: certificate review and approval part is not tested properly because getting sslexception error. Trying to resolve the error but not able to resolve due to lack of time.)**
+   **(note: certificate review and approval part is not tested properly because getting sslexception error. Trying to resolve the error but not able to resolve due to lack of time.)** 
    ````bash
    $ pki Yashjain@123 ca-cert-request-review 0×c --file testuser.csr
    or
