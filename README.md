@@ -237,11 +237,11 @@ Installing CA into /var/lib/pki/pki-tomcat.
 
 - For creating a certificate request for pki cli. A new client database can be initialized with the following command:
    ````bash
-   $ pki -c Secret.123 client-init
+   $ pki -c Yashjain@123 client-init
    ````
-- The certificates in the client security database can be listed using the following command:
+- The certificates in the client security database can be listed. i already created One CA_signing cetificate. You can check list by using the following command:
   ````bash
-  $ pki -c Secret.123 client-cert-find
+  $ pki -c Yashjain@123 client-cert-find
    
    ----------------------
    1 certificate(s) found  
@@ -257,7 +257,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
   
  - Generate a PKCS #10 client certificate request first.
    ````bash
-   $ pki -c Secret.123 client-cert-request uid=testuser
+   $ pki -c Yashjain@123 client-cert-request uid=testuser
      -----------------------------
    Submitted certificate request
    -----------------------------
@@ -287,8 +287,9 @@ Installing CA into /var/lib/pki/pki-tomcat.
       PKCS10Client: PKCB#10 request keyID written into testuser.csr.keyID
     ````
    ** Note: To check the both testuser.csr and keyid file iuse less command**
+   
 - To review the certificate request:
-   (note: review part is not tested properly because getting sslexception error. Trying to resolve the error but not able to resolve due to lack of time.)
+   **(note: certificate review and approval part is not tested properly because getting sslexception error. Trying to resolve the error but not able to resolve due to lack of time.)**
    ````bash
    $ pki Yashjain@123 ca-cert-request-review 0×c --file testuser.csr
    or
@@ -296,7 +297,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
    ````
 -  To approve the certificate request
    ````bash
-   $ pki -n caadmin ca-cert-request-approve 6
+   $ pki -n caadmin ca-cert-request-approve <request_id>
    ````
  
   
