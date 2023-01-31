@@ -22,7 +22,7 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
 - Second we need to download ISO file of fedora for windows host and install it. Fedora Download-
 [Fedora](https://getfedora.org/en/workstation/download/) 
 - Configure the setting to install fedora ISO in virtual box and allocate the CPUs, Memories to Fedora vm. 
-##### Note - To run Fedora minimum required 2gb RAM and 20gb Disk space.
+##### Note - To run Fedora minimum required 2gb RAM and 20gb Disk space. I took 2gb ram and 35gb disk size.
 
 ## 2. Installing PKI and DS(Directory server) packages.
    Refer from [Dogtag pki](https://github.com/dogtagpki/pki/wiki/Quick-Start)
@@ -301,6 +301,8 @@ Installing CA into /var/lib/pki/pki-tomcat.
    ````
  
   
+## 5. Write script to automate Create a certificate request using : client-cert-request  and sign the certificate using : ca-cert-request-review -
+   I create a simple script to create and approve certificate using subprocccess. To manipulate or the script accordingly - [script]( 
 
 
 
@@ -311,4 +313,3 @@ Installing CA into /var/lib/pki/pki-tomcat.
       
 
       
-
