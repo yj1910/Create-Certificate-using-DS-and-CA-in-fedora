@@ -302,7 +302,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
  
   
 ## 6. Write script to automate Create a certificate request using : client-cert-request  and sign the certificate using : ca-cert-request-review -
-   I create a python script to create and approve certificate using subprocccess module in python. To manipulate or the script accordingly.  - [script]( 
+   I create a python script to create and approve certificate using subprocccess module in python. To manipulate or the script accordingly.  - [script](https://github.com/yj1910/Create-a-DS-and-CA-servers-in-fedora-vm-and-certificate-request-and-approval-/blob/main/script.py)
 
 All the files should in same directory 
 
