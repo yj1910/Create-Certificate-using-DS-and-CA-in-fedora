@@ -119,10 +119,10 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
     quay.io/389ds/dirsrv
    ````
    - After deploying the container files. check the container is deploying successfully by fetching logs by command
-    ````bash
-    $ podman logs -f ds
-    ````
-     If conatiner is not running. start conatiner. ````bash podman start container_name ````
+      ````bash
+      $ podman logs -f ds
+      ````
+      If conatiner is not running. start conatiner. ```` podman start container_name ````
    - Creating DS Backend:
      ````bash
       $ podman exec ds dsconf hello backend create \
@@ -157,12 +157,12 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
     
 ## 4. Creating PKI Subsystems or CA server:
 
-      - to creating PKI subsytems. Run the command and configure as per according and requirments.
+  - to creating PKI subsytems. Run the command and configure as per according and requirments.
       
-      `````bash
-      $ pkispawn
-      ````
-      *console output and configuration-*
+         
+         $ pkispawn
+         
+     *console output and configuration-*
    ````bash               
       IMPORTANT:
 
@@ -200,7 +200,7 @@ Administrator:
 
 Directory Server:
   Hostname [pki.example.com]:
-  Use a secure LDAPS connection (Yes/No/Quit) [N]? Yes
+  Use a secure LDAPS connection (Yes/No/Quit) [N]? No
   LDAP Port [389]:
   Bind DN [cn=Directory Manager]:
   Password: Yashjain@123
