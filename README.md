@@ -16,7 +16,7 @@
 
 In this repo, In this we create Directory Server (DS) and Certificate Authority (CA) server on a Fedora VM and setup a LDAP server and CA server subsystem. Create a certificate request and automate python script. For more about assignment check [here](https://github.com/yj1910/Create-a-DS-and-CA-servers-in-fedora-vm-and-certificate-request-and-approval-/blob/main/Assignment)
 
-### 1.Setup Fedora VM in your windows machine.
+## 1.Setup Fedora VM in your windows machine.
 
 - Here we assuming, Your host machine has windows OS. First for VM. your need to download oracle Virtualbox VM. install it and configure to install another OS. Oracle Virtual box download- [virtualbox](https://www.virtualbox.org/wiki/Downloads) .
 - Second we need to download ISO file of fedora for windows host and install it. Fedora Download-
@@ -24,7 +24,7 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
 - Configure the setting to install fedora ISO in virtual box and allocate the CPUs, Memories to Fedora vm. 
 ##### Note - To run Fedora minimum required 2gb RAM and 20gb Disk space.
 
-### 2. Installing PKI and DS(Directory server) packages.
+## 2. Installing PKI and DS(Directory server) packages.
    Refer from [Dogtag pki](https://github.com/dogtagpki/pki/wiki/Quick-Start)
    
    - First you have to be root user. To root access for machine. Enter following command and after that you have to enter root password
@@ -41,13 +41,13 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
       $ dnf install -y 389-ds-base
       ````
       
- ### 3. Creating DS intance or LDAP server:
+ ## 3. Creating DS intance or LDAP server:
          
  - Generate a DS configuration file-
      
-       ````bash
+      ````bash
       $ dscreate create-template ds.inf
-       ````
+      ````
   - Customize the DS configuration file-
      ````bash
      $ sed -i \
@@ -87,7 +87,7 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
       ````
       *console output-*
       ````bash
-      Ds intance *hello* is running
+      Instance "hello" is running
       ````
       **Note- If after all setup the ds instance is not running just simply restart it**
             ````bash
@@ -124,11 +124,11 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
     ````
      If conatiner is not running. start conatiner. ````bash podman start container_name ````
    - Creating DS Backend:
-      ````bash
-   $ podman exec ds dsconf hello backend create \
-    --suffix dc=example,dc=com \
-    --be-name userRoot
-      ````
+     ````bash
+      $ podman exec ds dsconf hello backend create \
+      --suffix dc=example,dc=com \
+      --be-name userRoot
+     ````
    - Creating PKI Subtree:
       ````bash
        $ podman exec -i ds ldapadd \
@@ -155,7 +155,8 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
       -b "dc=example,dc=com"
      ````
     
-### 4. Creating PKI Subsystems or CA server:
+## 4. Creating PKI Subsystems or CA server:
+
       - to creating PKI subsytems. Run the command and configure as per according and requirments.
       
       `````bash
@@ -232,7 +233,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
       PKI instances will be enabled upon system boot
    ````
    After installing CA I created ca self signing certicate by refering [Ca_certificate_system](https://github.com/dogtagpki/pki/blob/master/docs/installation/ca/Installing_CA.md)
-### 5. Creating Certificate request and approval:
+## 5. Create a certificate request using : client-cert-request  and sign the certificate using : ca-cert-request-review :
 
 - For creating a certificate request for pki cli. A new client database can be initialized with the following command:
    ````bash
@@ -247,7 +248,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
    ----------------------
   Serial Number: 0x1
   Nickname: CA Signing
-  Subject DN: CN=CA Signing Certificate,OU=pki-tomcat,0=fedora.local
+  Subject DN: CN=CA Signing Certificate,OU=pki-tomcat,0=fedora.local security domain
   Issuer DN: CN=CA Signing Certificate,OU=pki-tomcat,O=fedora.local security domain
      ----------------------------
    Number of entries returned 1
@@ -265,7 +266,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
     Request Status: pending
     Operation Result: success
    ````
-   Alternativly, Try another one for generating request for pkcsclient#10
+   Alternativly, If getting error Try another one for generating request for pkcsclient#10
    ````bash
    $ PKCS10Client \
     -d ~/.dogtag/nssdb \
@@ -287,7 +288,7 @@ Installing CA into /var/lib/pki/pki-tomcat.
     ````
    ** Note: To check the both testuser.csr and keyid file iuse less command**
 - To review the certificate request:
-   (note: review part is not able to tested properly because getting sslexception error. Trying to resolve the error but not able to resolve due to lack of time)
+   (note: review part is not tested properly because getting sslexception error. Trying to resolve the error but not able to resolve due to lack of time.)
    ````bash
    $ pki Yashjain@123 ca-cert-request-review 0×c --file testuser.csr
    or
