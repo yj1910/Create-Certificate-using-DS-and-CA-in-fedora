@@ -43,12 +43,12 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
       
  ## 3. Creating DS intance or LDAP server:
          
- - Generate a DS configuration file-
+ - Create a template for DS file in ds.inf-
      
       ````bash
       $ dscreate create-template ds.inf
       ````
-  - Customize the DS configuration file-
+  - Customize the DS configuration file are as follows-
      ````bash
      $ sed -i \
     -e "s/;instance_name = .*/instance_name = hello/g" \
@@ -182,7 +182,7 @@ In this repo, In this we create Directory Server (DS) and Certificate Authority 
 
     Run 'man pkispawn' for details.
 
-Subsystem (CA/KRA/OCSP/TKS/TPS) [CA]:
+Subsystem (CA/KRA/OCSP/TKS/TPS) [CA]: CA
 
 Tomcat:
   Instance [pki-tomcat]:
