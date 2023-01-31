@@ -294,7 +294,10 @@ Installing CA into /var/lib/pki/pki-tomcat.
    ````
  
   
-
+https://github.com/dogtagpki/pki/blob/master/docs/installation/ca/Installing_CA.md
+https://github.com/dogtagpki/pki/wiki/PKI-Client-CLI
+https://github.com/dogtagpki/pki/wiki/Generating-Certificate-Request-with-PKCS10Client
+https://github.com/dogtagpki/pki/wiki/PKI-NSS-Certificate-CLI
 
      
      
